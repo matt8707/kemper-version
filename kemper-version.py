@@ -10,7 +10,7 @@ def api(type):
 
 
 def find(str):
-    file = open(config.debuglog, 'r'); log = file.read()
+    file = open(config.debuglog, 'r', encoding="latin-1"); log = file.read()
     key = log[log.rfind(str):].splitlines(); file.close()
     if str == 'session start':
         return key[1]
