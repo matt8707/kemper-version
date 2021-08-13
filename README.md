@@ -27,7 +27,7 @@ sensor:
   - platform: command_line
     name: kemper_version
     command: >
-      ssh -i /config/.ssh/id_rsa matte@192.168.1.8 /usr/local/bin/python3 kemper-version/kemper-version.py
+      ssh -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa matte@192.168.1.8 '/usr/local/bin/python3 /Users/matte/kemper-version/kemper-version.py'
     value_template: >
       {{ value_json.profiler_installed == value_json.profiler_latest and 
       value_json.rigmanager_latest == value_json.rigmanager_installed }}
