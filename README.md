@@ -1,9 +1,8 @@
 # kemper-version
 
-https://www.kemper-amps.com/products/profiler/line-up
-https://www.kemper-amps.com/rig-manager
+https://www.kemper-amps.com/products/profiler/line-up<br>https://www.kemper-amps.com/rig-manager
 
-This project finds the installed versions from local logs, checks if updates are available through an undocumented api and outputs json.
+This project finds the installed versions from your local logs, checks if updates are available through an undocumented api and outputs json.
 
 
 ```json
@@ -16,7 +15,7 @@ This project finds the installed versions from local logs, checks if updates are
 ```
 
 ***Scenario***
-You realize that you haven't fired up rig manager in a while and a new update is available. You update it, but when you try to update your profiler you're met with an error. You have to find a usb-stick and go through the tedious process of manually updating the profiler, because the current version of rig manager is too new to communicate with the profiler...
+You realize that you haven't fired up rig manager in a while and a new update is available. You update it but then you're met with an error. Because the current version of rig manager is too new to communicate with the profiler, you have to find a usb-stick and go through the tedious process of manually updating the profiler...
 
 ---
 
