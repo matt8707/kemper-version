@@ -1,28 +1,19 @@
-import config
-import requests
-import xml.etree.ElementTree as ET
-import json
+import xml.etree.ElementTree as xml
+import requests as req
+import config as user
 
+def api(latest):
+    """Return latest version"""
+    url = 'https://www.kemper-amps.com/api/update?type=' + latest
+    return xml.fromstring(req.get(url, auth=(user.email, user.password)).text)[0].attrib['version']
 
-def api(type):
-    url = 'https://www.kemper-amps.com/api/update?type=' + type
-    return ET.fromstring(requests.get(url, auth=(config.email, config.password)).text)[0].attrib['version']
+def find(local):
+    """Return installed version"""
+    with open(user.debuglog, 'r', encoding='latin-1') as file:
+        log = file.read()
+    key = log[log.rfind(local):].splitlines()
+    file.close()
+    return key[1] if local == 'session start' else key[0].split(' ')[1]
 
-
-def find(str):
-    file = open(config.debuglog, 'r', encoding="latin-1"); log = file.read()
-    key = log[log.rfind(str):].splitlines(); file.close()
-    if str == 'session start':
-        return key[1]
-    else:
-        return key[0].split(' ')[1]
-
-
-data = json.dumps({
-    "profiler_latest": api('KPA2'),
-    "profiler_installed": find('OS=Release:'),
-    "rigmanager_latest": api('RIGMANAGER'),
-    "rigmanager_installed": find('session start')
-})
-
-print(data)
+print(f'{{"profiler_latest": "{api("KPA2")}", "profiler_installed": "{find("OS=Release:")}", \
+"rigmanager_latest": "{api("RIGMANAGER")}", "rigmanager_installed": "{find("session start")}"}}')
