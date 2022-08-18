@@ -1,5 +1,7 @@
-# rename file to config.py and enter auth for kemper-amps.com
+"""
+rename file to config.py and enter auth for kemper-amps.com
+"""
 
-email = 'user'
-password = 'pass'
-debuglog = '/Users/matte/Documents/Kemper Amps/RigManager/DebugLog.txt'
+EMAIL = "user"
+PASSWORD = "pass"
+DEBUGLOG = "/Users/matte/Documents/Kemper Amps/RigManager/DebugLog.txt"
