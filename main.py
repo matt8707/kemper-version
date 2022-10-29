@@ -26,9 +26,7 @@ def api(latest):
 
 
 def find(local):
-    """
-    Return installed version
-    """
+    """ Return installed version """
     with open(path, "r", encoding="latin-1") as file:
         log = file.read()
         key = log[log.rfind(local):].splitlines()
@@ -50,5 +48,6 @@ if __name__ == "__main__":
         data = json.dumps(output, indent=2)
 
         print(data)
+
     except Exception as e:
         print("Start Rig Manager and Profiler at least once\nError:", e)
