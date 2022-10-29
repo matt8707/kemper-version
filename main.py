@@ -29,11 +29,11 @@ def find(local):
     """ Return installed version """
     with open(path, "r", encoding="latin-1") as file:
         log = file.read()
-        key = log[log.rfind(local):].splitlines()
-        file.close()
-        if local == "session start":
-            return key[1]
-        return key[0].split(" ")[1]
+    key = log[log.rfind(local):].splitlines()
+    file.close()
+    if local == "session start":
+        return key[1]
+    return key[0].split(" ")[1]
 
 
 if __name__ == "__main__":
