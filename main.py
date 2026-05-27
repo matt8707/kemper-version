@@ -59,8 +59,19 @@ def get_installed_versions():
     with open(LOG_PATH, encoding="latin-1") as f:
         log = f.read()
 
-    pos = log.rfind("OS=Release:")
-    profiler = log[pos:].splitlines()[0].split(" ")[1]
+    profiler = None
+
+    old_pos = log.rfind("OS=Release:")
+    if old_pos != -1:
+        profiler = log[old_pos:].splitlines()[0].split(" ")[1]
+
+    new_pos = log.rfind("opened new KPA with serial")
+    if new_pos != -1 and new_pos > old_pos:
+        line = log[new_pos:].splitlines()[0]
+        profiler = line.rsplit("version ", 1)[1].replace("Release: ", "")
+
+    if not profiler:
+        raise ValueError("Could not find profiler version in debug log")
 
     pos = log.rfind("session start")
     rigmanager = log[pos:].splitlines()[1]
